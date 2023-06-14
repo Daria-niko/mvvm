@@ -1,0 +1,6 @@
+C:\Users\user\source\repos\MvvmNew\converter\bin\Debug\converter.dll
+C:\Users\user\source\repos\MvvmNew\converter\bin\Debug\converter.pdb
+C:\Users\user\source\repos\MvvmNew\converter\obj\Debug\converter.csproj.AssemblyReference.cache
+C:\Users\user\source\repos\MvvmNew\converter\obj\Debug\converter.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\MvvmNew\converter\obj\Debug\converter.dll
+C:\Users\user\source\repos\MvvmNew\converter\obj\Debug\converter.pdb

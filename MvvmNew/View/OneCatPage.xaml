@@ -1,0 +1,42 @@
+﻿<Page x:Class="MvvmNew.View.OneCatPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MvvmNew.View" xmlns:viewmodel="clr-namespace:MvvmNew.ViewModel"
+      xmlns:converters="clr-namespace:converter;assembly=converter"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OneCatPage" d:DataContext="{d:DesignInstance Type = viewmodel:ViewModelBase}">
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <converters:MultiConverter x:Key="MyMultiConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Image Source="{Binding OneCatPageViewModel.Bitmap}" ></Image>
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <TextBlock TextAlignment="Center" Margin="3" FontSize="18" Text="Имя"></TextBlock>
+                <TextBox x:Name="NameTB" TextAlignment="Center" Margin="3" FontSize="18" Text="{Binding OneCatPageViewModel.Cat.Name}"></TextBox>
+                <TextBlock TextAlignment="Center" Margin="3" FontSize="18" Text="Описание"></TextBlock>
+                <TextBox x:Name="DescriptionTB" TextAlignment="Center" Margin="3" FontSize="18" Height="200" Text="{Binding OneCatPageViewModel.Cat.Description}"></TextBox>
+                <TextBlock TextAlignment="Center" Margin="3" FontSize="18" Text="Дата рождения"></TextBlock>
+                <DatePicker Margin="3" FontSize="18"  DisplayDate="{Binding OneCatPageViewModel.Cat.DateOfBirth}" SelectedDate="{Binding OneCatPageViewModel.Cat.DateOfBirth}"></DatePicker>
+                <Button Margin="3"  Content="Сохранить" FontSize="18" Command="{Binding OneCatPageViewModel.SaveCommand}" >
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource MyMultiConverter}">
+                            <Binding ElementName="DescriptionTB" Path="Text"/>
+                            <Binding ElementName="NameTB" Path="Text"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+                <Button Margin="3"  Content="Добавить фото" FontSize="18" Command="{Binding OneCatPageViewModel.AddPhotoCommand}" Visibility="{Binding  OneCatPageViewModel.IsCreated, Converter={StaticResource BoolToVisibilityConverter}}"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
